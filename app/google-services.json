@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "874807207375",
+    "project_id": "comfiado",
+    "storage_bucket": "comfiado.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874807207375:android:26ed74cc15b52fa428deba",
+        "android_client_info": {
+          "package_name": "br.edu.qi.comfiado"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "874807207375-cbtufgfb2b7tql3find45p3t8qaf779m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHIny1OkJh19b8oDR3SXFDku7WzvP0xYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "874807207375-cbtufgfb2b7tql3find45p3t8qaf779m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
