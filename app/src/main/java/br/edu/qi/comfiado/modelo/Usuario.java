@@ -9,6 +9,8 @@ public class Usuario {
     private String senhaNumerica;
     private TipoUsuario tipoUsuario;
 
+    public Usuario() {};
+
     public int getId() {
         return id;
     }

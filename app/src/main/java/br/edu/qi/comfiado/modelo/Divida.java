@@ -15,6 +15,8 @@ public class Divida {
     private Calendar dataAbertura;
     private Calendar dataPagamento;
 
+    public Divida() {};
+
     public int getId() {
         return id;
     }
