@@ -7,6 +7,7 @@ public class Usuario {
     private String cpf;
     private String senha;
     private String senhaNumerica;
+    private TipoUsuario tipoUsuario;
 
     public int getId() {
         return id;
@@ -54,5 +55,13 @@ public class Usuario {
 
     public void setSenhaNumerica(String senhaNumerica) {
         this.senhaNumerica = senhaNumerica;
+    }
+
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 }
