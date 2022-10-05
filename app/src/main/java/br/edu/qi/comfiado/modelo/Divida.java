@@ -3,10 +3,10 @@ package br.edu.qi.comfiado.modelo;
 import java.util.Calendar;
 
 public class Divida {
-    private int id;
+    private int uid;
 
-    private int idCredor;
-    private int idDevedor;
+    private int uidCredor;
+    private int uidDevedor;
 
     private float valor;
 
@@ -18,28 +18,28 @@ public class Divida {
 
     public Divida() {};
 
-    public int getId() {
-        return id;
+    public int getUid() {
+        return uid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 
-    public int getIdCredor() {
-        return idCredor;
+    public int getUidCredor() {
+        return uidCredor;
     }
 
-    public void setIdCredor(int idCredor) {
-        this.idCredor = idCredor;
+    public void setUidCredor(int uidCredor) {
+        this.uidCredor = uidCredor;
     }
 
-    public int getIdDevedor() {
-        return idDevedor;
+    public int getUidDevedor() {
+        return uidDevedor;
     }
 
-    public void setIdDevedor(int idDevedor) {
-        this.idDevedor = idDevedor;
+    public void setUidDevedor(int uidDevedor) {
+        this.uidDevedor = uidDevedor;
     }
 
     public float getValor() {
