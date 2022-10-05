@@ -7,6 +7,6 @@ public class DividaDAO {
     private final DatabaseReference databaseReference;
 
     public DividaDAO() {
-        this.databaseReference = ConexaoDB.conectar();
+        this.databaseReference = ConexaoDB.conectar("dividas");
     }
 }

@@ -1,7 +1,7 @@
 package br.edu.qi.comfiado.modelo;
 
 public class Usuario {
-    private int id;
+    private String uid;
     private String nome;
     private String email;
     private String cpf;
@@ -11,12 +11,12 @@ public class Usuario {
 
     public Usuario() {};
 
-    public int getId() {
-        return id;
+    public String getUid() {
+        return uid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getNome() {
@@ -65,5 +65,18 @@ public class Usuario {
 
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "uid='" + uid + '\'' +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", senha='" + senha + '\'' +
+                ", senhaNumerica='" + senhaNumerica + '\'' +
+                ", tipoUsuario=" + tipoUsuario +
+                '}';
     }
 }
