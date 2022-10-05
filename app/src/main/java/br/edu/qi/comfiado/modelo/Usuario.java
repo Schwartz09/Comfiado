@@ -4,12 +4,11 @@ public class Usuario {
     private String uid;
     private String nome;
     private String email;
+    private String telefone;
     private String cpf;
     private String senha;
-    private String senhaNumerica;
-    private TipoUsuario tipoUsuario;
 
-    public Usuario() {};
+    public Usuario() {}
 
     public String getUid() {
         return uid;
@@ -35,6 +34,14 @@ public class Usuario {
         this.email = email;
     }
 
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
     public String getCpf() {
         return cpf;
     }
@@ -51,32 +58,15 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getSenhaNumerica() {
-        return senhaNumerica;
-    }
-
-    public void setSenhaNumerica(String senhaNumerica) {
-        this.senhaNumerica = senhaNumerica;
-    }
-
-    public TipoUsuario getTipoUsuario() {
-        return tipoUsuario;
-    }
-
-    public void setTipoUsuario(TipoUsuario tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
-    }
-
     @Override
     public String toString() {
         return "Usuario{" +
                 "uid='" + uid + '\'' +
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
+                ", telefone='" + telefone + '\'' +
                 ", cpf='" + cpf + '\'' +
                 ", senha='" + senha + '\'' +
-                ", senhaNumerica='" + senhaNumerica + '\'' +
-                ", tipoUsuario=" + tipoUsuario +
                 '}';
     }
 }

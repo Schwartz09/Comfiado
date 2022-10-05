@@ -12,6 +12,7 @@ public class Divida {
 
     private String descricao;
 
+    private Calendar dataVencimento;
     private Calendar dataAbertura;
     private Calendar dataPagamento;
 
@@ -55,6 +56,14 @@ public class Divida {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Calendar getDataVencimento() {
+        return dataVencimento;
+    }
+
+    public void setDataVencimento(Calendar dataVencimento) {
+        this.dataVencimento = dataVencimento;
     }
 
     public Calendar getDataAbertura() {
