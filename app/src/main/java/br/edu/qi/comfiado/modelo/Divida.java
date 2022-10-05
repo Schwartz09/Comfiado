@@ -81,4 +81,18 @@ public class Divida {
     public void setDataPagamento(Calendar dataPagamento) {
         this.dataPagamento = dataPagamento;
     }
+
+    @Override
+    public String toString() {
+        return "Divida{" +
+                "uid=" + uid +
+                ", uidCredor=" + uidCredor +
+                ", uidDevedor=" + uidDevedor +
+                ", valor=" + valor +
+                ", descricao='" + descricao + '\'' +
+                ", dataVencimento=" + dataVencimento +
+                ", dataAbertura=" + dataAbertura +
+                ", dataPagamento=" + dataPagamento +
+                '}';
+    }
 }
