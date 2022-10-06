@@ -4,7 +4,7 @@
         android:startColor="@color/preto"
         android:centerColor="@color/CinzaMarca"
         android:endColor="@color/Cinza"
-        android:angle="5"
+        android:angle="270"
         />
     <corners android:radius="10dp"/>
 </shape>

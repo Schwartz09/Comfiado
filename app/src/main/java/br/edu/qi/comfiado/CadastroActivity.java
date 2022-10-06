@@ -40,11 +40,11 @@ public class CadastroActivity extends AppCompatActivity {
 
         // TODO: implementar a tela de cadastro utilizando os ids abaixo
 
-        this.edtEmail = findViewById(R.id.edtEmail);
-        this.edtSenha = findViewById(R.id.edtSenha);
-
-        this.btnCadastro = findViewById(R.id.btnCadastro);
-        this.btnLogin = findViewById(R.id.btnLogin);
+//        this.edtEmail = findViewById(R.id.edtEmail);
+//        this.edtSenha = findViewById(R.id.edtSenha);
+//
+//        this.btnCadastro = findViewById(R.id.btnCadastro);
+//        this.btnLogin = findViewById(R.id.btnLogin);
 
         // TODO: definir atributos edtText pelo id
 
