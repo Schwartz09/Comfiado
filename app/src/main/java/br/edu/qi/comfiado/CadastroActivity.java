@@ -48,19 +48,19 @@ public class CadastroActivity extends AppCompatActivity {
 
         // TODO: definir atributos edtText pelo id
 
-        this.btnCadastro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cadastrar();
-            }
-        });
-
-        this.btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                trocarParaActivityLogin();
-            }
-        });
+//        this.btnCadastro.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                cadastrar();
+//            }
+//        });
+//
+//        this.btnLogin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                trocarParaActivityLogin();
+//            }
+//        });
     }
 
     private void trocarParaActivityLogin() {

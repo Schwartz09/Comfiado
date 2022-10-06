@@ -27,7 +27,6 @@ public class LoginActivity extends AppCompatActivity {
     private TextView txtCadastrar;
     private Button btnEntrar;
 
-
     private FirebaseAuth mAuth;
 
     // TODO: implementar lembre-me
@@ -41,11 +40,25 @@ public class LoginActivity extends AppCompatActivity {
         this.mAuth = FirebaseAuth.getInstance();
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            this.trocarParaActivityPrincipal();
-        }
 
-        // TODO: implementar a tela de login com os ids abaixo
+        // Se houver um usuario logado
+        if(currentUser != null){
+
+            // recarrega as informações do servidor
+            currentUser.reload().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+
+                    // Se o usuario logado ainda for valido
+                    if (currentUser != null) {
+
+                        // troca pra activity principal
+                        trocarParaActivityPrincipal();
+                    }
+                }
+            });
+
+        }
 
         this.edtUsuario = findViewById(R.id.edtUsuario);
         this.edtSenha = findViewById(R.id.edtSenha);
