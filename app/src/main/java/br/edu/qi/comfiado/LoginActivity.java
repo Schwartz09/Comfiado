@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,10 +21,12 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText edtEmail;
+    private EditText edtUsuario;
     private EditText edtSenha;
-    private Button btnLogin;
-    private Button btnCadastro;
+    private CheckBox ckLembrar;
+    private TextView txtCadastrar;
+    private Button btnEntrar;
+
 
     private FirebaseAuth mAuth;
 
@@ -43,20 +47,20 @@ public class LoginActivity extends AppCompatActivity {
 
         // TODO: implementar a tela de login com os ids abaixo
 
-        this.edtEmail = findViewById(R.id.edtEmail);
+        this.edtUsuario = findViewById(R.id.edtUsuario);
         this.edtSenha = findViewById(R.id.edtSenha);
+        this.ckLembrar = findViewById(R.id.ckLembrar);
+        this.btnEntrar = findViewById(R.id.btnEntrar);
+        this.txtCadastrar = findViewById(R.id.txtCadastrar);
 
-        this.btnLogin = findViewById(R.id.btnLogin);
-        this.btnCadastro = findViewById(R.id.btnCadastro);
-
-        this.btnLogin.setOnClickListener(new View.OnClickListener() {
+        this.btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 login();
             }
         });
 
-        this.btnCadastro.setOnClickListener(new View.OnClickListener() {
+        this.txtCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 trocarParaActivityCadastro();
@@ -77,18 +81,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login() {
-        String email = this.edtEmail.getText().toString();
+        String usuario = this.edtUsuario.getText().toString();
         String senha = this.edtSenha.getText().toString();
 
-        if (email.isEmpty()) {
-            this.edtEmail.setError("Insira seu email");
+        if (usuario.isEmpty()) {
+            this.edtUsuario.setError("Insira seu email");
         }
 
         if (senha.isEmpty()) {
             this.edtSenha.setError("Insira sua senha");
         }
 
-        mAuth.signInWithEmailAndPassword(email, senha)
+        mAuth.signInWithEmailAndPassword(usuario, senha)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
