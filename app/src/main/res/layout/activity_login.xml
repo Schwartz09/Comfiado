@@ -10,10 +10,11 @@
     <ImageView
         android:id="@+id/logoView"
         style="@style/img"
-        android:layout_width="391dp"
-        android:layout_height="292dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="504dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_branca" />
@@ -23,7 +24,7 @@
         style="@style/btn"
         android:layout_width="144dp"
         android:layout_height="52dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/borda"
         android:text="Entrar"
         android:textColor="#FFFFFF"
@@ -103,8 +104,8 @@
 
     <CheckBox
         android:id="@+id/ckLembrar"
-        android:layout_width="154dp"
-        android:layout_height="69dp"
+        android:layout_width="187dp"
+        android:layout_height="71dp"
         android:layout_marginTop="8dp"
         android:buttonTint="#FFFFFF"
         android:text="Lembrar-me"
@@ -122,11 +123,12 @@
         style="@style/cadastrese"
         android:layout_width="130dp"
         android:layout_height="36dp"
-        android:layout_marginTop="32dp"
         android:text="Cadastre-se"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEntrar" />
+        app:layout_constraintTop_toBottomOf="@+id/btnEntrar"
+        app:layout_constraintVertical_bias="0.46" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

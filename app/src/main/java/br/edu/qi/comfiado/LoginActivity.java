@@ -100,24 +100,24 @@ public class LoginActivity extends AppCompatActivity {
 
         if (usuario.isEmpty()) {
             this.edtUsuario.setError("Insira seu email");
-        }
-
-        if (senha.isEmpty()) {
+        } else if (senha.isEmpty()) {
             this.edtSenha.setError("Insira sua senha");
+        } else {
+            mAuth.signInWithEmailAndPassword(usuario, senha)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(LoginActivity.this, "Bem vindo", Toast.LENGTH_SHORT).show();
+                                trocarParaActivityPrincipal();
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Login ou Email INCORRETO", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
         }
 
-        mAuth.signInWithEmailAndPassword(usuario, senha)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(LoginActivity.this, "Bem vindo", Toast.LENGTH_SHORT).show();
-                            trocarParaActivityPrincipal();
-                        } else {
-                            Toast.makeText(LoginActivity.this, "Login ou Email INCORRETO", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+
 
 
     }
