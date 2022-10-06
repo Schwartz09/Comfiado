@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if (usuario.isEmpty()) {
             this.edtUsuario.setError("Insira seu email");
-        } else if (senha.isEmpty()) {
+        }else if (senha.isEmpty()) {
             this.edtSenha.setError("Insira sua senha");
         } else {
             mAuth.signInWithEmailAndPassword(usuario, senha)

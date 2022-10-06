@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,11 +22,15 @@ import br.edu.qi.comfiado.modelo.Usuario;
 
 public class CadastroActivity extends AppCompatActivity {
 
+    private EditText edtNome;
     private EditText edtEmail;
+    private EditText edtTelefone;
+    private EditText edtCpf;
     private EditText edtSenha;
+    private EditText edtConfirmacaoSenha;
 
     private Button btnCadastro;
-    private Button btnLogin;
+    private TextView txtLogin;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
@@ -41,27 +46,31 @@ public class CadastroActivity extends AppCompatActivity {
 
         // TODO: implementar a tela de cadastro utilizando os ids abaixo
 
-//        this.edtEmail = findViewById(R.id.edtEmail);
-//        this.edtSenha = findViewById(R.id.edtSenha);
-//
-//        this.btnCadastro = findViewById(R.id.btnCadastro);
-//        this.btnLogin = findViewById(R.id.btnLogin);
+        this.edtNome = findViewById(R.id.edtNome);
+        this.edtEmail = findViewById(R.id.edtEmail);
+        this.edtTelefone = findViewById(R.id.edtTelefone);
+        this.edtCpf = findViewById(R.id.edtCpf);
+        this.edtSenha = findViewById(R.id.edtSenha);
+        this.edtConfirmacaoSenha = findViewById(R.id.edtConfirmacaoSenha);
+
+        this.txtLogin = findViewById(R.id.txtLogin);
+        this.btnCadastro = findViewById(R.id.btnCadastro);
 
         // TODO: definir atributos edtText pelo id
 
-//        this.btnCadastro.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                cadastrar();
-//            }
-//        });
-//
-//        this.btnLogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                trocarParaActivityLogin();
-//            }
-//        });
+        this.btnCadastro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cadastrar();
+            }
+        });
+
+        this.txtLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                trocarParaActivityLogin();
+            }
+        });
     }
 
     private void trocarParaActivityLogin() {
@@ -78,8 +87,17 @@ public class CadastroActivity extends AppCompatActivity {
 
     public void cadastrar() {
 
+        String nome = this.edtNome.getText().toString();
         String email = this.edtEmail.getText().toString();
+        String telefone = this.edtTelefone.getText().toString();
+        String cpf = this.edtCpf.getText().toString();
+        String confirmacaoSenha = this.edtConfirmacaoSenha.getText().toString();
         String senha = this.edtSenha.getText().toString();
+
+        if (!confirmacaoSenha.equals(senha)) {
+            this.edtSenha.setError("Senha e Confirmação não coincidem");
+            return;
+        }
 
         // TODO: buscar outros atributos
 
