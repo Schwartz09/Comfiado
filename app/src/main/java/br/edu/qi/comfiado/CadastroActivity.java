@@ -103,7 +103,10 @@ public class CadastroActivity extends AppCompatActivity {
 
         Usuario cadastro = new Usuario();
 
+        cadastro.setNome(nome);
         cadastro.setEmail(email);
+        cadastro.setTelefone(telefone);
+        cadastro.setCpf(cpf);
         cadastro.setSenha(senha);
 
         // TODO: definir outros atributos
