@@ -20,34 +20,25 @@ import br.edu.qi.comfiado.modelo.Usuario;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private FirebaseAuth mAuth;
-    private Usuario usuario;
     private DatabaseReference mDatabase;
 
     private Button btnLogoff;
 
-    private void logoff() {
-        this.mAuth.signOut();
-    }
-
-    private void trocarParaActivityLogin() {
-        Intent i = new Intent(MainActivity.this, LoginActivity.class);
-        startActivity(i);
-        finish();
-    }
+    private Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
 
         this.mDatabase = FirebaseDatabase.getInstance().getReference().child("usuarios");
         this.mAuth = FirebaseAuth.getInstance();
-        this.usuario = new Usuario();
 
         this.btnLogoff = findViewById(R.id.btnLogoff);
 
+        this.usuario = new Usuario();
         usuario.setUid(mAuth.getCurrentUser().getUid());
 
         this.mDatabase.child(usuario.getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -60,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(MainActivity.this, "Não foi possivel encontrar seu dados", Toast.LENGTH_LONG).show();
                     logoff();
-                    trocarParaActivityLogin();
                 }
             }
         });
@@ -69,12 +59,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 logoff();
-                trocarParaActivityLogin();
             }
         });
-
-
-
-
     }
+
+    private void logoff() {
+        this.mAuth.signOut();
+        Intent i = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(i);
+        finish();
+    }
+
 }
