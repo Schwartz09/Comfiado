@@ -95,15 +95,15 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login() {
-        String usuario = this.edtEmail.getText().toString();
+        String email = this.edtEmail.getText().toString();
         String senha = this.edtSenha.getText().toString();
 
-        if (usuario.isEmpty()) {
+        if (email.isEmpty()) {
             this.edtEmail.setError("Insira seu email");
         }else if (senha.isEmpty()) {
             this.edtSenha.setError("Insira sua senha");
         } else {
-            mAuth.signInWithEmailAndPassword(usuario, senha)
+            mAuth.signInWithEmailAndPassword(email, senha)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +31,7 @@ public class CadastroActivity extends AppCompatActivity {
     private EditText edtConfirmacaoSenha;
 
     private Button btnCadastro;
-    private TextView txtLogin;
+    private ImageView imgLogin;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
@@ -46,29 +47,29 @@ public class CadastroActivity extends AppCompatActivity {
 
         // TODO: implementar a tela de cadastro utilizando os ids abaixo
 
-        this.edtNome = findViewById(R.id.edtNome);
-        this.edtEmail = findViewById(R.id.edtEmail);
-        this.edtTelefone = findViewById(R.id.edtTelefone);
-        this.edtCpf = findViewById(R.id.edtCpf);
-        this.edtSenha = findViewById(R.id.edtSenha);
-        this.edtConfirmacaoSenha = findViewById(R.id.edtConfirmacaoSenha);
-
-        this.txtLogin = findViewById(R.id.txtLogin);
-        this.btnCadastro = findViewById(R.id.btnCadastro);
-
-        this.btnCadastro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cadastrar();
-            }
-        });
-
-        this.txtLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                trocarParaActivityLogin();
-            }
-        });
+//        this.edtNome = findViewById(R.id.edtNome);
+//        this.edtEmail = findViewById(R.id.edtEmail);
+//        this.edtTelefone = findViewById(R.id.edtTelefone);
+//        this.edtCpf = findViewById(R.id.edtCpf);
+//        this.edtSenha = findViewById(R.id.edtSenha);
+//        this.edtConfirmacaoSenha = findViewById(R.id.edtConfirmacaoSenha);
+//
+//        this.imgLogin = findViewById(R.id.imgLogin);
+//        this.btnCadastro = findViewById(R.id.btnCadastro);
+//
+//        this.btnCadastro.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                cadastrar();
+//            }
+//        });
+//
+//        this.imgLogin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                trocarParaActivityLogin();
+//            }
+//        });
     }
 
     private void trocarParaActivityLogin() {
@@ -104,7 +105,7 @@ public class CadastroActivity extends AppCompatActivity {
         cadastro.setTelefone(telefone);
         cadastro.setCpf(cpf);
         cadastro.setSenha(senha);
-        
+
         mAuth.createUserWithEmailAndPassword(email, senha)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
