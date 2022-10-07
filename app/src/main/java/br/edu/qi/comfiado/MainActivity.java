@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Usuario usuario;
     private DatabaseReference mDatabase;
+
+    private Button btnLogoff;
 
     private void logoff() {
         this.mAuth.signOut();
@@ -42,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         this.mAuth = FirebaseAuth.getInstance();
         this.usuario = new Usuario();
 
+        this.btnLogoff = findViewById(R.id.btnLogoff);
+
         usuario.setUid(mAuth.getCurrentUser().getUid());
 
         this.mDatabase.child(usuario.getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -56,6 +62,14 @@ public class MainActivity extends AppCompatActivity {
                     logoff();
                     trocarParaActivityLogin();
                 }
+            }
+        });
+
+        this.btnLogoff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logoff();
+                trocarParaActivityLogin();
             }
         });
 
