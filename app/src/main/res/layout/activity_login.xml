@@ -8,7 +8,7 @@
     tools:context=".LoginActivity">
 
     <ImageView
-        android:id="@+id/logoView"
+        android:id="@+id/imgLogo"
         style="@style/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
@@ -19,16 +19,10 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnEntrar"
         style="@style/btn"
-        android:layout_width="144dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/borda"
         android:text="Entrar"
-        android:textColor="@color/branco"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:background="@drawable/borda"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ckLembrar" />
 
@@ -37,7 +31,9 @@
         style="@style/campos"
         android:layout_marginTop="360dp"
         android:background="@drawable/campo"
+        android:fontFamily="serif"
         android:hint="Email:"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.79"
         app:layout_constraintStart_toStartOf="@+id/imageView7"
@@ -48,6 +44,7 @@
         style="@style/campos"
         android:layout_marginTop="20dp"
         android:background="@drawable/campo"
+        android:fontFamily="serif"
         android:hint="Senha:"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,6 +56,8 @@
         android:id="@+id/imageView7"
         style="@style/cifrao"
         android:layout_marginTop="346dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.006"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/img_cifrao" />
@@ -67,6 +66,8 @@
         android:id="@+id/imageView10"
         style="@style/cifrao"
         android:layout_marginTop="420dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.006"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/img_cifrao" />
@@ -75,7 +76,7 @@
         android:id="@+id/imageView6"
         android:layout_width="326dp"
         android:layout_height="329dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,17 +85,18 @@
 
     <CheckBox
         android:id="@+id/ckLembrar"
-        android:layout_width="187dp"
-        android:layout_height="71dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="171dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="4dp"
         android:buttonTint="@color/branco"
+        android:fontFamily="serif"
         android:text="Lembrar-me"
         android:textAlignment="center"
         android:textColor="@color/branco"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtSenha" />
 
@@ -104,6 +106,7 @@
         android:layout_height="58dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/tranparente"
+        android:fontFamily="serif"
         android:text="Cadastre-se"
         android:textAlignment="center"
         android:textColor="@color/branco"
@@ -111,9 +114,8 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnEntrar"
-        app:layout_constraintVertical_bias="0.46" />
+        app:layout_constraintVertical_bias="0.282" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

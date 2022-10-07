@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
@@ -111,7 +113,15 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Bem vindo", Toast.LENGTH_SHORT).show();
                                 trocarParaActivityPrincipal();
                             } else {
-                                Toast.makeText(LoginActivity.this, "Login ou Email INCORRETO", Toast.LENGTH_SHORT).show();
+                                try {
+                                    throw task.getException();
+                                } catch (FirebaseAuthInvalidCredentialsException e) {
+                                    Toast.makeText(LoginActivity.this, "Email e/ou Senha Incorreto(s)", Toast.LENGTH_SHORT).show();
+                                } catch (FirebaseAuthInvalidUserException e) {
+                                    Toast.makeText(LoginActivity.this, "Usuário não encontrado", Toast.LENGTH_SHORT).show();
+                                } catch (Exception e) {
+                                    System.out.println("Erro " + e.getMessage());
+                                }
                             }
                         }
                     });

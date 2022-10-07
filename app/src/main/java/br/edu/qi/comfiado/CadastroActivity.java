@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -24,13 +26,13 @@ import br.edu.qi.comfiado.modelo.Usuario;
 public class CadastroActivity extends AppCompatActivity {
 
     private EditText edtNome;
-    private EditText edtEmail;
-    private EditText edtTelefone;
     private EditText edtCpf;
+    private EditText edtTelefone;
+    private EditText edtEmail;
     private EditText edtSenha;
     private EditText edtConfirmacaoSenha;
 
-    private Button btnCadastro;
+    private Button btnCadastrar;
     private ImageView imgLogin;
 
     private FirebaseAuth mAuth;
@@ -47,29 +49,29 @@ public class CadastroActivity extends AppCompatActivity {
 
         // TODO: implementar a tela de cadastro utilizando os ids abaixo
 
-//        this.edtNome = findViewById(R.id.edtNome);
-//        this.edtEmail = findViewById(R.id.edtEmail);
-//        this.edtTelefone = findViewById(R.id.edtTelefone);
-//        this.edtCpf = findViewById(R.id.edtCpf);
-//        this.edtSenha = findViewById(R.id.edtSenha);
-//        this.edtConfirmacaoSenha = findViewById(R.id.edtConfirmacaoSenha);
-//
-//        this.imgLogin = findViewById(R.id.imgLogin);
-//        this.btnCadastro = findViewById(R.id.btnCadastro);
-//
-//        this.btnCadastro.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                cadastrar();
-//            }
-//        });
-//
-//        this.imgLogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                trocarParaActivityLogin();
-//            }
-//        });
+        this.edtNome = findViewById(R.id.edtNome);
+        this.edtCpf = findViewById(R.id.edtCpf);
+        this.edtTelefone = findViewById(R.id.edtTelefone);
+        this.edtEmail = findViewById(R.id.edtEmail);
+        this.edtSenha = findViewById(R.id.edtSenha);
+        this.edtConfirmacaoSenha = findViewById(R.id.edtConfirmacaoSenha);
+
+        this.imgLogin = findViewById(R.id.imgLogin);
+        this.btnCadastrar = findViewById(R.id.btnCadastrar);
+
+        this.btnCadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cadastrar();
+            }
+        });
+
+        this.imgLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                trocarParaActivityLogin();
+            }
+        });
     }
 
     private void trocarParaActivityLogin() {
@@ -87,23 +89,32 @@ public class CadastroActivity extends AppCompatActivity {
     public void cadastrar() {
 
         String nome = this.edtNome.getText().toString();
-        String email = this.edtEmail.getText().toString();
-        String telefone = this.edtTelefone.getText().toString();
         String cpf = this.edtCpf.getText().toString();
-        String confirmacaoSenha = this.edtConfirmacaoSenha.getText().toString();
+        String telefone = this.edtTelefone.getText().toString();
+        String email = this.edtEmail.getText().toString();
         String senha = this.edtSenha.getText().toString();
+        String confirmacaoSenha = this.edtConfirmacaoSenha.getText().toString();
 
-        if (!confirmacaoSenha.equals(senha)) {
-            this.edtSenha.setError("Senha e Confirmação não coincidem");
+        if (senha.length() < 6) {
+            this.edtSenha.setError("A senha deve ter pelo menos 6 caracteres");
+            this.edtSenha.requestFocus();
             return;
         }
+
+        if (!confirmacaoSenha.equals(senha)) {
+            this.edtConfirmacaoSenha.setError("Senha e Confirmação não coincidem");
+            this.edtConfirmacaoSenha.requestFocus();
+            return;
+        }
+
+
 
         Usuario cadastro = new Usuario();
 
         cadastro.setNome(nome);
-        cadastro.setEmail(email);
-        cadastro.setTelefone(telefone);
         cadastro.setCpf(cpf);
+        cadastro.setTelefone(telefone);
+        cadastro.setEmail(email);
         cadastro.setSenha(senha);
 
         mAuth.createUserWithEmailAndPassword(email, senha)
@@ -118,7 +129,15 @@ public class CadastroActivity extends AppCompatActivity {
                             Toast.makeText(CadastroActivity.this, "Bem vindo", Toast.LENGTH_SHORT).show();
                             trocarParaActivityPrincipal();
                         } else {
-                            Toast.makeText(CadastroActivity.this, "Houve um problema no cadastro", Toast.LENGTH_LONG).show();
+                            try {
+                                throw task.getException();
+                            } catch (FirebaseAuthUserCollisionException e) {
+                                edtEmail.setError("Email já está em uso");
+                                edtEmail.requestFocus();
+                            } catch(Exception e) {
+                                Toast.makeText(CadastroActivity.this, "Houve um erro", Toast.LENGTH_LONG).show();
+                                System.out.println("Erro " + e.getMessage());
+                            }
                         }
                     }
                 });
