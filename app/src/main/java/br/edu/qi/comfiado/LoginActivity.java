@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText edtUsuario;
+    private EditText edtEmail;
     private EditText edtSenha;
     private CheckBox ckLembrar;
     private TextView txtCadastrar;
@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
 
         }
 
-        this.edtUsuario = findViewById(R.id.edtUsuario);
+        this.edtEmail = findViewById(R.id.edtEmail);
         this.edtSenha = findViewById(R.id.edtSenha);
         this.ckLembrar = findViewById(R.id.ckLembrar);
         this.btnEntrar = findViewById(R.id.btnEntrar);
@@ -95,11 +95,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login() {
-        String usuario = this.edtUsuario.getText().toString();
+        String usuario = this.edtEmail.getText().toString();
         String senha = this.edtSenha.getText().toString();
 
         if (usuario.isEmpty()) {
-            this.edtUsuario.setError("Insira seu email");
+            this.edtEmail.setError("Insira seu email");
         }else if (senha.isEmpty()) {
             this.edtSenha.setError("Insira sua senha");
         } else {

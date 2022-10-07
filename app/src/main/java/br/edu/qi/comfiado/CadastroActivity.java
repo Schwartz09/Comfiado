@@ -56,8 +56,6 @@ public class CadastroActivity extends AppCompatActivity {
         this.txtLogin = findViewById(R.id.txtLogin);
         this.btnCadastro = findViewById(R.id.btnCadastro);
 
-        // TODO: definir atributos edtText pelo id
-
         this.btnCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,8 +97,6 @@ public class CadastroActivity extends AppCompatActivity {
             return;
         }
 
-        // TODO: buscar outros atributos
-
         Usuario cadastro = new Usuario();
 
         cadastro.setNome(nome);
@@ -108,9 +104,7 @@ public class CadastroActivity extends AppCompatActivity {
         cadastro.setTelefone(telefone);
         cadastro.setCpf(cpf);
         cadastro.setSenha(senha);
-
-        // TODO: definir outros atributos
-
+        
         mAuth.createUserWithEmailAndPassword(email, senha)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
