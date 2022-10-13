@@ -2,35 +2,43 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/logoff"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    tools:context=".MainActivity">
+    tools:context=".ReivindicarDividaActivity">
 
-    <Button
-        android:id="@+id/btnCriarDivida"
+    <EditText
+        android:id="@+id/edtCodigoDivida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="413dp"
-        android:layout_marginBottom="26dp"
-        android:text="Criar Divida"
-        app:layout_constraintBottom_toTopOf="@+id/btnReivindicarDivida"
+        android:ems="10"
+        android:hint="Código"
+        android:inputType="number"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnConfirmarDivida"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtInformacoesDivida" />
+
+    <TextView
+        android:id="@+id/txtInformacoesDivida"
+        android:layout_width="310dp"
+        android:layout_height="335dp"
+        app:layout_constraintBottom_toTopOf="@+id/edtCodigoDivida"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnReivindicarDivida"
+        android:id="@+id/btnConfirmarDivida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:layout_marginBottom="196dp"
-        android:text="Reivindicar Divida"
+        android:text="Confirmar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCriarDivida" />
+        app:layout_constraintTop_toBottomOf="@+id/edtCodigoDivida" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

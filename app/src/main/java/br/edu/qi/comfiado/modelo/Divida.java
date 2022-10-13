@@ -5,6 +5,8 @@ import java.util.Calendar;
 public class Divida {
     private String uid;
 
+    private String codigo;
+
     private String uidCredor;
     private String uidDevedor;
 
@@ -18,12 +20,21 @@ public class Divida {
 
     public Divida() {};
 
+
     public String getUid() {
         return uid;
     }
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getUidCredor() {

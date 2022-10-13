@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void trocarParaActivityPrincipal() {
-        Intent i = new Intent(LoginActivity.this, CriarDividaActivity.class);
+        Intent i = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(i);
         finish();
     }

@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
 
     //private Button btnLogoff;
+    private Button btnCriarDivida;
+    private Button btnReivindicarDivida;
 
     private Usuario usuario;
 
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         this.mAuth = FirebaseAuth.getInstance();
 
         //this.btnLogoff = findViewById(R.id.btnLogoff);
+        this.btnCriarDivida = findViewById(R.id.btnCriarDivida);
+        this.btnReivindicarDivida = findViewById(R.id.btnReivindicarDivida);
 
         this.usuario = new Usuario();
         usuario.setUid(mAuth.getCurrentUser().getUid());
@@ -52,6 +56,24 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Não foi possivel encontrar seu dados", Toast.LENGTH_LONG).show();
                     logoff();
                 }
+            }
+        });
+
+        this.btnCriarDivida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, CriarDividaActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        this.btnReivindicarDivida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, ReivindicarDividaActivity.class);
+                startActivity(i);
+                finish();
             }
         });
 
