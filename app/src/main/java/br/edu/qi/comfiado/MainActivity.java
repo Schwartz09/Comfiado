@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
-    private Button btnLogoff;
+    //private Button btnLogoff;
 
     private Usuario usuario;
 
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         this.mDatabase = FirebaseDatabase.getInstance().getReference().child("usuarios");
         this.mAuth = FirebaseAuth.getInstance();
 
-        this.btnLogoff = findViewById(R.id.btnLogoff);
+        //this.btnLogoff = findViewById(R.id.btnLogoff);
 
         this.usuario = new Usuario();
         usuario.setUid(mAuth.getCurrentUser().getUid());
@@ -55,12 +55,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        this.btnLogoff.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                logoff();
-            }
-        });
+//        this.btnLogoff.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                logoff();
+//            }
+//        });
     }
 
     private void logoff() {

@@ -3,42 +3,42 @@ package br.edu.qi.comfiado.modelo;
 import java.util.Calendar;
 
 public class Divida {
-    private int uid;
+    private String uid;
 
-    private int uidCredor;
-    private int uidDevedor;
+    private String uidCredor;
+    private String uidDevedor;
 
     private float valor;
 
     private String descricao;
 
-    private Calendar dataVencimento;
-    private Calendar dataAbertura;
-    private Calendar dataPagamento;
+    private long dataVencimento;
+    private long dataAbertura;
+    private long dataPagamento;
 
     public Divida() {};
 
-    public int getUid() {
+    public String getUid() {
         return uid;
     }
 
-    public void setUid(int uid) {
+    public void setUid(String uid) {
         this.uid = uid;
     }
 
-    public int getUidCredor() {
+    public String getUidCredor() {
         return uidCredor;
     }
 
-    public void setUidCredor(int uidCredor) {
+    public void setUidCredor(String uidCredor) {
         this.uidCredor = uidCredor;
     }
 
-    public int getUidDevedor() {
+    public String getUidDevedor() {
         return uidDevedor;
     }
 
-    public void setUidDevedor(int uidDevedor) {
+    public void setUidDevedor(String uidDevedor) {
         this.uidDevedor = uidDevedor;
     }
 
@@ -58,27 +58,27 @@ public class Divida {
         this.descricao = descricao;
     }
 
-    public Calendar getDataVencimento() {
+    public long getDataVencimento() {
         return dataVencimento;
     }
 
-    public void setDataVencimento(Calendar dataVencimento) {
+    public void setDataVencimento(long dataVencimento) {
         this.dataVencimento = dataVencimento;
     }
 
-    public Calendar getDataAbertura() {
+    public long getDataAbertura() {
         return dataAbertura;
     }
 
-    public void setDataAbertura(Calendar dataAbertura) {
+    public void setDataAbertura(long dataAbertura) {
         this.dataAbertura = dataAbertura;
     }
 
-    public Calendar getDataPagamento() {
+    public long getDataPagamento() {
         return dataPagamento;
     }
 
-    public void setDataPagamento(Calendar dataPagamento) {
+    public void setDataPagamento(long dataPagamento) {
         this.dataPagamento = dataPagamento;
     }
 

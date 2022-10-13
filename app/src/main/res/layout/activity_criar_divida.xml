@@ -14,8 +14,11 @@
         android:hint="Valor"
         android:inputType="numberDecimal"
         android:minHeight="48dp"
-        tools:layout_editor_absoluteX="101dp"
-        tools:layout_editor_absoluteY="119dp" />
+        app:layout_constraintBottom_toTopOf="@+id/edtDescricao"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/edtDataVencimento"
@@ -25,16 +28,22 @@
         android:hint="Data de Vencimento"
         android:inputType="date"
         android:minHeight="48dp"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="408dp" />
+        app:layout_constraintBottom_toTopOf="@+id/btnCriarDivida"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtDescricao" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnCriarDivida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Gerar Divida"
-        tools:layout_editor_absoluteX="134dp"
-        tools:layout_editor_absoluteY="506dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtDataVencimento" />
 
     <EditText
         android:id="@+id/edtDescricao"
@@ -42,8 +51,12 @@
         android:layout_height="135dp"
         android:ems="10"
         android:gravity="start|top"
+        android:hint="Descrição"
         android:inputType="textMultiLine"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="217dp" />
+        app:layout_constraintBottom_toTopOf="@+id/edtDataVencimento"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtValor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
