@@ -22,8 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
-
-    //private Button btnLogoff;
+    private Button btnLogoff;
     private Button btnCriarDivida;
     private Button btnReivindicarDivida;
 
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         this.mDatabase = FirebaseDatabase.getInstance().getReference().child("usuarios");
         this.mAuth = FirebaseAuth.getInstance();
 
-        //this.btnLogoff = findViewById(R.id.btnLogoff);
+        this.btnLogoff = findViewById(R.id.btnLogoff);
         this.btnCriarDivida = findViewById(R.id.btnCriarDivida);
         this.btnReivindicarDivida = findViewById(R.id.btnReivindicarDivida);
 
@@ -77,12 +76,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        this.btnLogoff.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                logoff();
-//            }
-//        });
+        this.btnLogoff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logoff();
+            }
+        });
     }
 
     private void logoff() {
