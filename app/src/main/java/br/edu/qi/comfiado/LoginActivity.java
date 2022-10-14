@@ -62,7 +62,6 @@ public class LoginActivity extends AppCompatActivity {
 
         this.edtEmail = findViewById(R.id.edtEmail);
         this.edtSenha = findViewById(R.id.edtSenha);
-        this.ckLembrar = findViewById(R.id.ckLembrar);
         this.btnEntrar = findViewById(R.id.btnEntrar);
         this.txtCadastrar = findViewById(R.id.txtCadastrar);
 
