@@ -25,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import br.edu.qi.comfiado.modelo.Usuario;
 
 public class CadastroActivity extends AppCompatActivity {
-
+    // meu comentario
     private EditText edtNome;
     private EditText edtCpf;
     private EditText edtTelefone;
