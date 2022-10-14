@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -45,7 +47,9 @@ public class CriarDividaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_criar_divida);
-        getSupportActionBar().hide();
+
+        setTitle("Criar Divida");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         this.edtValor = findViewById(R.id.edtValor);
         this.edtDescricao = findViewById(R.id.edtDescricao);
@@ -77,16 +81,38 @@ public class CriarDividaActivity extends AppCompatActivity {
             }
         });
 
+        edtDataVencimento.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus) {
+                    if (!datePickerDialog.isShowing()) {
+                        datePickerDialog.show();
+                    }
+                }
+            }
+        });
+
         this.btnCriarDivida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Divida divida = new Divida();
-                divida.setValor(Float.parseFloat(edtValor.getText().toString()));
-                divida.setDescricao(edtDescricao.getText().toString());
-                divida.setDataAbertura(Calendar.getInstance().getTimeInMillis());
-                divida.setDataVencimento(calendarDataVencimento.getTimeInMillis());
-                divida.setUidCredor(mAuth.getCurrentUser().getUid());
+
+                Float valor = Float.parseFloat(edtValor.getText().toString());
+                String descricao = edtDescricao.getText().toString();
+                long dataAbertura = Calendar.getInstance().getTimeInMillis();
+                long dataVencimento = calendarDataVencimento.getTimeInMillis();
+                String uidCredor = mAuth.getCurrentUser().getUid();
+
+                if (descricao.isEmpty() || uidCredor.isEmpty()) {
+                    return;
+                }
+
+                divida.setValor(valor);
+                divida.setDescricao(descricao);
+                divida.setDataAbertura(dataAbertura);
+                divida.setDataVencimento(dataVencimento);
+                divida.setUidCredor(uidCredor);
                 divida.setCodigo(gerarCodigo());
 
                 mDatabase.push().setValue(divida).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -112,5 +138,21 @@ public class CriarDividaActivity extends AppCompatActivity {
         String myFormat="dd/MM/yyyy";
         SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat);
         edtDataVencimento.setText(dateFormat.format(calendarDataVencimento.getTime()));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                trocarParaActivityMain();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void trocarParaActivityMain() {
+        Intent i = new Intent(CriarDividaActivity.this, MainActivity.class);
+        startActivity(i);
+        finish();
     }
 }

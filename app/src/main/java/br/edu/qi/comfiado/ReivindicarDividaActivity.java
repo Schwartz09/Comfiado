@@ -2,15 +2,19 @@ package br.edu.qi.comfiado;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,6 +28,7 @@ import com.google.firebase.database.Query;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Objects;
 
 import br.edu.qi.comfiado.modelo.Divida;
 import br.edu.qi.comfiado.modelo.Usuario;
@@ -38,11 +43,17 @@ public class ReivindicarDividaActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
 
     private Divida divida;
+    private Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reivindicar_divida);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("Reivindicar Divida");
+
+        this.usuario = (Usuario) getIntent().getSerializableExtra("usuario");
 
         this.edtCodigoDivida = findViewById(R.id.edtCodigoDivida);
         this.txtInformacoesDivida = findViewById(R.id.txtInformacoesDivida);
@@ -54,8 +65,30 @@ public class ReivindicarDividaActivity extends AppCompatActivity {
         this.btnConfirmarDivida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (divida != null) {
-                    // TODO: definir a divida como sendo do usuario
+                if (divida != null && divida.getUidDevedor() == null) {
+
+                    if (divida.getUidCredor().equals(usuario.getUid())) {
+                        Toast.makeText(ReivindicarDividaActivity.this, "Você não pode reivindicar uma divida criada por você mesmo", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
+                    mDatabase.child("dividas").child(divida.getUid()).child("uidDevedor").setValue(usuario.getUid()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()){
+                                mDatabase.child("dividas").child(divida.getUid()).child("codigo").removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        Toast.makeText(ReivindicarDividaActivity.this, "Nova divida", Toast.LENGTH_LONG).show();
+                                        trocarParaActivityMain();
+                                    }
+                                });
+
+                            } else {
+                                Toast.makeText(ReivindicarDividaActivity.this, "Houve um erro", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
                 }
             }
         });
@@ -77,6 +110,12 @@ public class ReivindicarDividaActivity extends AppCompatActivity {
                         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
                             divida = snapshot.getValue(Divida.class);
+
+                            divida.setUid(snapshot.getKey());
+
+                            if (divida.getUidDevedor() != null) {
+                                return;
+                            }
 
                             Query queryCredor = mDatabase.child("usuarios").child(divida.getUidCredor());
 
@@ -142,5 +181,21 @@ public class ReivindicarDividaActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                trocarParaActivityMain();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void trocarParaActivityMain() {
+        Intent i = new Intent(ReivindicarDividaActivity.this, MainActivity.class);
+        startActivity(i);
+        finish();
     }
 }

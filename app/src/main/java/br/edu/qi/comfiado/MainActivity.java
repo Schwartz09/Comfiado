@@ -16,15 +16,18 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.Serializable;
+
 import br.edu.qi.comfiado.modelo.Usuario;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
-    private DatabaseReference mDatabase;
     private Button btnLogoff;
     private Button btnCriarDivida;
     private Button btnReivindicarDivida;
+
+    private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
 
     private Usuario usuario;
 
@@ -34,12 +37,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
-        this.mDatabase = FirebaseDatabase.getInstance().getReference().child("usuarios");
-        this.mAuth = FirebaseAuth.getInstance();
-
         this.btnLogoff = findViewById(R.id.btnLogoff);
         this.btnCriarDivida = findViewById(R.id.btnCriarDivida);
         this.btnReivindicarDivida = findViewById(R.id.btnReivindicarDivida);
+
+        this.mDatabase = FirebaseDatabase.getInstance().getReference().child("usuarios");
+        this.mAuth = FirebaseAuth.getInstance();
 
         this.usuario = new Usuario();
         usuario.setUid(mAuth.getCurrentUser().getUid());
@@ -50,7 +53,10 @@ public class MainActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
 
                     usuario = task.getResult().getValue(Usuario.class);
-
+                    if (usuario != null) {
+                        usuario.setUid(task.getResult().getKey());
+                        Toast.makeText(MainActivity.this, "Bem vindo", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Toast.makeText(MainActivity.this, "Não foi possivel encontrar seu dados", Toast.LENGTH_LONG).show();
                     logoff();
@@ -62,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, CriarDividaActivity.class);
+                i.putExtra("usuario", usuario);
                 startActivity(i);
                 finish();
             }
@@ -71,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, ReivindicarDividaActivity.class);
+                i.putExtra("usuario", usuario);
                 startActivity(i);
                 finish();
             }

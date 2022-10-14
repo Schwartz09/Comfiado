@@ -1,6 +1,8 @@
 package br.edu.qi.comfiado.modelo;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
     private String uid;
     private String nome;
     private String email;
@@ -69,4 +71,5 @@ public class Usuario {
                 ", senha='" + senha + '\'' +
                 '}';
     }
+
 }

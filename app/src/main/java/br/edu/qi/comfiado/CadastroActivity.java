@@ -3,6 +3,7 @@ package br.edu.qi.comfiado;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +36,8 @@ public class CadastroActivity extends AppCompatActivity {
     private Button btnCadastrar;
     private ImageView imgLogin;
 
+    private ProgressDialog pdLoadingBar;
+
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
@@ -44,11 +47,6 @@ public class CadastroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro);
         getSupportActionBar().hide();
 
-        this.mAuth = FirebaseAuth.getInstance();
-        this.mDatabase = FirebaseDatabase.getInstance().getReference().child("usuarios");
-
-        // TODO: implementar a tela de cadastro utilizando os ids abaixo
-
         this.edtNome = findViewById(R.id.edtNome);
         this.edtCpf = findViewById(R.id.edtCpf);
         this.edtTelefone = findViewById(R.id.edtTelefone);
@@ -56,8 +54,13 @@ public class CadastroActivity extends AppCompatActivity {
         this.edtSenha = findViewById(R.id.edtSenha);
         this.edtConfirmacaoSenha = findViewById(R.id.edtConfirmacaoSenha);
 
+        this.mAuth = FirebaseAuth.getInstance();
+        this.mDatabase = FirebaseDatabase.getInstance().getReference().child("usuarios");
+
         this.imgLogin = findViewById(R.id.imgLogin);
         this.btnCadastrar = findViewById(R.id.btnCadastrar);
+
+        this.pdLoadingBar = new ProgressDialog(CadastroActivity.this);
 
         this.btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,8 +110,6 @@ public class CadastroActivity extends AppCompatActivity {
             return;
         }
 
-
-
         Usuario cadastro = new Usuario();
 
         cadastro.setNome(nome);
@@ -116,6 +117,11 @@ public class CadastroActivity extends AppCompatActivity {
         cadastro.setTelefone(telefone);
         cadastro.setEmail(email);
         cadastro.setSenha(senha);
+
+        pdLoadingBar.setTitle("Criando conta...");
+        pdLoadingBar.setMessage("Por favor aguarde...");
+        pdLoadingBar.setCanceledOnTouchOutside(false);
+        pdLoadingBar.show();
 
         mAuth.createUserWithEmailAndPassword(email, senha)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -139,6 +145,8 @@ public class CadastroActivity extends AppCompatActivity {
                                 System.out.println("Erro " + e.getMessage());
                             }
                         }
+
+                        pdLoadingBar.dismiss();
                     }
                 });
     };

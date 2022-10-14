@@ -1,8 +1,9 @@
 package br.edu.qi.comfiado.modelo;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
-public class Divida {
+public class Divida implements Serializable {
     private String uid;
 
     private String codigo;

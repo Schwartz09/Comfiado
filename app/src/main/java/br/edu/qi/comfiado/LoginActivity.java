@@ -3,6 +3,7 @@ package br.edu.qi.comfiado;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     private TextView txtCadastrar;
     private Button btnEntrar;
 
+    private ProgressDialog pdLoadingBar;
+
     private FirebaseAuth mAuth;
 
     // TODO: implementar lembre-me
@@ -41,21 +44,15 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         this.mAuth = FirebaseAuth.getInstance();
+        this.pdLoadingBar = new ProgressDialog(LoginActivity.this);
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        // Se houver um usuario logado
         if(currentUser != null){
-
-            // recarrega as informações do servidor
             currentUser.reload().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-
-                    // Se o usuario logado ainda for valido
                     if (currentUser != null) {
-
-                        // troca pra activity principal
                         trocarParaActivityPrincipal();
                     }
                 }
@@ -72,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
         this.btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 login();
             }
         });
@@ -105,6 +103,12 @@ public class LoginActivity extends AppCompatActivity {
         }else if (senha.isEmpty()) {
             this.edtSenha.setError("Insira sua senha");
         } else {
+
+            pdLoadingBar.setTitle("Entrando...");
+            pdLoadingBar.setMessage("Por favor aguarde...");
+            pdLoadingBar.setCanceledOnTouchOutside(false);
+            pdLoadingBar.show();
+
             mAuth.signInWithEmailAndPassword(email, senha)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -123,12 +127,9 @@ public class LoginActivity extends AppCompatActivity {
                                     System.out.println("Erro " + e.getMessage());
                                 }
                             }
+                            pdLoadingBar.dismiss();
                         }
                     });
         }
-
-
-
-
     }
 }
