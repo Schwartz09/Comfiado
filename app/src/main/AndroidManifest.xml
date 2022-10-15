@@ -14,6 +14,12 @@
         android:theme="@style/Theme.Comfiado"
         tools:targetApi="31">
         <activity
+            android:name=".EuDevoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MeDevemActivity"
+            android:exported="false" />
+        <activity
             android:name=".ReivindicarDividaActivity"
             android:exported="false" />
         <activity
