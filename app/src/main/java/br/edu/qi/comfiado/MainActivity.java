@@ -23,8 +23,12 @@ import br.edu.qi.comfiado.modelo.Usuario;
 public class MainActivity extends AppCompatActivity {
 
     private Button btnLogoff;
+
     private Button btnCriarDivida;
     private Button btnReivindicarDivida;
+
+    private Button btnEuDevo;
+    private Button btnMeDevem;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
@@ -41,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
         this.btnCriarDivida = findViewById(R.id.btnCriarDivida);
         this.btnReivindicarDivida = findViewById(R.id.btnReivindicarDivida);
 
+        this.btnMeDevem = findViewById(R.id.btnMeDevem);
+        this.btnEuDevo = findViewById(R.id.btnEuDevo);
+
         this.mDatabase = FirebaseDatabase.getInstance().getReference().child("usuarios");
         this.mAuth = FirebaseAuth.getInstance();
 
@@ -55,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
                     usuario = task.getResult().getValue(Usuario.class);
                     if (usuario != null) {
                         usuario.setUid(task.getResult().getKey());
-                        Toast.makeText(MainActivity.this, "Bem vindo", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(MainActivity.this, "Não foi possivel encontrar seu dados", Toast.LENGTH_LONG).show();
@@ -90,6 +96,20 @@ public class MainActivity extends AppCompatActivity {
                 logoff();
             }
         });
+
+        this.btnEuDevo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                trocarParaActivityEuDevo();
+            }
+        });
+
+        this.btnMeDevem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                trocarParaActivityMeDevem();
+            }
+        });
     }
 
     private void logoff() {
@@ -97,6 +117,23 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(i);
         finish();
+    }
+
+    private void trocarParaActivityEuDevo() {
+        Intent i = new Intent(MainActivity.this, EuDevoActivity.class);
+
+        i.putExtra("usuario", this.usuario);
+        startActivity(i);
+        finish();
+    }
+
+    private void trocarParaActivityMeDevem() {
+        Intent i = new Intent(MainActivity.this, MeDevemActivity.class);
+
+        i.putExtra("usuario", this.usuario);
+        startActivity(i);
+        finish();
+
     }
 
 }

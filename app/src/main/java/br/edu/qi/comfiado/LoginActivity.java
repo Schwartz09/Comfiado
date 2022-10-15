@@ -22,11 +22,12 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 
+import br.edu.qi.comfiado.modelo.Usuario;
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText edtEmail;
     private EditText edtSenha;
-    private CheckBox ckLembrar;
     private TextView txtCadastrar;
     private Button btnEntrar;
 
@@ -46,13 +47,13 @@ public class LoginActivity extends AppCompatActivity {
         this.mAuth = FirebaseAuth.getInstance();
         this.pdLoadingBar = new ProgressDialog(LoginActivity.this);
 
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        FirebaseUser usuario = mAuth.getCurrentUser();
 
-        if(currentUser != null){
-            currentUser.reload().addOnCompleteListener(new OnCompleteListener<Void>() {
+        if(usuario != null){
+            usuario.reload().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    if (currentUser != null) {
+                    if (usuario != null) {
                         trocarParaActivityPrincipal();
                     }
                 }

@@ -9,42 +9,57 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/btnCriarDivida"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="413dp"
-        android:layout_marginBottom="26dp"
-        android:text="Criar Divida"
-        app:layout_constraintBottom_toTopOf="@+id/btnReivindicarDivida"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/btnReivindicarDivida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:layout_marginBottom="196dp"
         android:text="Reivindicar Divida"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogoff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnCriarDivida" />
 
     <Button
+        android:id="@+id/btnCriarDivida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Criar Divida"
+        app:layout_constraintBottom_toTopOf="@+id/btnReivindicarDivida"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnMeDevem" />
+
+    <Button
         android:id="@+id/btnLogoff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="158dp"
-        android:layout_marginTop="51dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginBottom="84dp"
         android:text="LOGOUT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnReivindicarDivida" />
+
+    <Button
+        android:id="@+id/btnEuDevo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eu devo"
+        app:layout_constraintBottom_toTopOf="@+id/btnMeDevem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnMeDevem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Me Devem"
+        app:layout_constraintBottom_toTopOf="@+id/btnCriarDivida"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEuDevo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
