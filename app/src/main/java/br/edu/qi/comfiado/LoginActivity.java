@@ -45,11 +45,9 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         this.mAuth = FirebaseAuth.getInstance();
-        this.pdLoadingBar = new ProgressDialog(LoginActivity.this);
-
         FirebaseUser usuario = mAuth.getCurrentUser();
 
-        if(usuario != null){
+        if(usuario != null) {
             usuario.reload().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
@@ -58,8 +56,10 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
             });
-
         }
+
+        this.mAuth = FirebaseAuth.getInstance();
+        this.pdLoadingBar = new ProgressDialog(LoginActivity.this);
 
         this.edtEmail = findViewById(R.id.edtEmail);
         this.edtSenha = findViewById(R.id.edtSenha);
@@ -80,7 +80,9 @@ public class LoginActivity extends AppCompatActivity {
                 trocarParaActivityCadastro();
             }
         });
+
     }
+
 
     private void trocarParaActivityCadastro() {
         Intent i = new Intent(LoginActivity.this, CadastroActivity.class);

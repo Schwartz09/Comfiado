@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btnEuDevo;
     private Button btnMeDevem;
 
+    private TextView txtNomeUsuario;
+
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
@@ -51,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         this.mDatabase = FirebaseDatabase.getInstance().getReference().child("usuarios");
         this.mAuth = FirebaseAuth.getInstance();
 
+        this.txtNomeUsuario = findViewById(R.id.txtNomeUsuario);
+
         this.usuario = new Usuario();
         usuario.setUid(mAuth.getCurrentUser().getUid());
 
@@ -62,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                     usuario = task.getResult().getValue(Usuario.class);
                     if (usuario != null) {
                         usuario.setUid(task.getResult().getKey());
+                        txtNomeUsuario.setText("Olá " + usuario.getNome());
                     }
                 } else {
                     Toast.makeText(MainActivity.this, "Não foi possivel encontrar seu dados", Toast.LENGTH_LONG).show();
@@ -73,20 +79,14 @@ public class MainActivity extends AppCompatActivity {
         this.btnCriarDivida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, CriarDividaActivity.class);
-                i.putExtra("usuario", usuario);
-                startActivity(i);
-                finish();
+                trocarParaActivityCriarDivida();
             }
         });
 
         this.btnReivindicarDivida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, ReivindicarDividaActivity.class);
-                i.putExtra("usuario", usuario);
-                startActivity(i);
-                finish();
+                trocarParaActivityReivindicarDivida();
             }
         });
 
@@ -121,19 +121,30 @@ public class MainActivity extends AppCompatActivity {
 
     private void trocarParaActivityEuDevo() {
         Intent i = new Intent(MainActivity.this, EuDevoActivity.class);
-
         i.putExtra("usuario", this.usuario);
         startActivity(i);
-        finish();
+
     }
 
     private void trocarParaActivityMeDevem() {
         Intent i = new Intent(MainActivity.this, MeDevemActivity.class);
-
         i.putExtra("usuario", this.usuario);
         startActivity(i);
-        finish();
+
 
     }
 
+    private void trocarParaActivityCriarDivida() {
+        Intent i = new Intent(MainActivity.this, CriarDividaActivity.class);
+        i.putExtra("usuario", this.usuario);
+        startActivity(i);
+
+    }
+
+    private void trocarParaActivityReivindicarDivida(){
+        Intent i = new Intent(MainActivity.this, ReivindicarDividaActivity.class);
+        i.putExtra("usuario", this.usuario);
+        startActivity(i);
+
+    }
 }

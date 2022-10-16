@@ -151,8 +151,6 @@ public class CriarDividaActivity extends AppCompatActivity {
     }
 
     private void trocarParaActivityMain() {
-        Intent i = new Intent(CriarDividaActivity.this, MainActivity.class);
-        startActivity(i);
         finish();
     }
 }

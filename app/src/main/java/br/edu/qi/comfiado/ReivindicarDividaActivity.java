@@ -194,8 +194,6 @@ public class ReivindicarDividaActivity extends AppCompatActivity {
     }
 
     private void trocarParaActivityMain() {
-        Intent i = new Intent(ReivindicarDividaActivity.this, MainActivity.class);
-        startActivity(i);
         finish();
     }
 }

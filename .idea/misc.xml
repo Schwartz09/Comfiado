@@ -5,8 +5,13 @@
       <map>
         <entry key="..\:/Users/Henrique Oliveira/Documents/comfiado/app/src/main/res/drawable/background.xml" value="0.196" />
         <entry key="..\:/Users/Henrique Oliveira/Documents/comfiado/app/src/main/res/layout/activity_cadastro.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Henrique Oliveira/Documents/comfiado/app/src/main/res/layout/activity_launcher.xml" value="0.28229166666666666" />
         <entry key="..\:/Users/Henrique Oliveira/Documents/comfiado/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Henrique Oliveira/Documents/comfiado/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Henrique Oliveira/Documents/comfiado/app/src/main/res/layout/activity_me_devem.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Henrique Oliveira/Documents/comfiado/app/src/main/res/layout/divida_list_item.xml" value="0.5" />
+        <entry key="..\:/Users/Henrique Oliveira/Documents/comfiado/app/src/main/res/layout/eu_devo_list_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Henrique Oliveira/Documents/comfiado/app/src/main/res/layout/me_devem_list_item.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/QI/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/simple_list_item_1.xml" value="0.14791666666666667" />
         <entry key="..\:/Users/QI/Documents/comfiado/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1795" />
         <entry key="..\:/Users/QI/Documents/comfiado/app/src/main/res/drawable/background.xml" value="0.1" />
